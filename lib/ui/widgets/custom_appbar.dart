@@ -1,14 +1,28 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:task_management/UI/controller/auth_controller.dart';
 import 'package:task_management/UI/screens/update_profile_screen.dart';
+import 'package:task_management/providers/auth_provider.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
   });
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    final userModel = authProvider.userModel;
+    final profilePhoto = "";
     return AppBar(
       backgroundColor: Colors.green,
       title: InkWell(
@@ -18,7 +32,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 builder: (context) => const UpdateProfileScreen())),
         child: Row(
           children: [
-            const CircleAvatar(),
+            CircleAvatar(
+              child: profilePhoto.isNotEmpty
+                  ? Image.memory(jsonDecode(profilePhoto))
+                  : Icon(Icons.person),
+            ),
             const SizedBox(
               width: 8,
             ),
@@ -26,15 +44,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Bidhan Nath",
+                  "${userModel!.firstName} ${userModel!.lastName}",
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall
                       ?.copyWith(color: Colors.white),
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  "bidhannath2001@gmail.com",
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  "${userModel!.email}",
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Colors.white,
                   ),
                 ),
@@ -46,7 +65,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           onPressed: () {
-            AuthController.clearUserData();
+            authProvider.logout();
             Navigator.pushNamedAndRemoveUntil(
                 context, '/login', (route) => false);
           },
@@ -56,7 +75,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

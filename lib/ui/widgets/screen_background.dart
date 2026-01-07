@@ -1,26 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:task_management/UI/utils/assets_path.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 
-class ScreenBackground extends StatelessWidget {
-  const ScreenBackground({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
-  final Widget child;
+class PhotoMaker extends StatelessWidget {
+  final VoidCallback onTap;
+  final XFile? selectedImage;
+  const PhotoMaker({super.key, required this.onTap, this.selectedImage});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SvgPicture.asset(
-          AssetsPath.background,
-          width: double.maxFinite,
-          height: double.maxFinite,
-          fit: BoxFit.cover,
+    return  InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 50,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
         ),
-        SafeArea(child: child)
-      ],
+        child: Row(
+          children: [
+            Container(
+              child: Text('Photo',style: TextStyle(color: Colors.white),),
+              alignment: Alignment.center,
+              width: 80,
+              decoration: const BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    bottomLeft: Radius.circular(10),
+                  )
+              ),
+            ),
+            Expanded(child: Text(selectedImage==null? "No photo is selected":selectedImage!.name,
+              style: TextStyle(
+                overflow: TextOverflow.ellipsis,
+              ),
+              maxLines: 1,
+            ),),
+          ],
+        ),
+      ),
     );
   }
 }
