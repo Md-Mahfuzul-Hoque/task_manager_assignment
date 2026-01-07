@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_management/UI/screens/add_new_task_screen.dart';
-import 'package:task_management/UI/widgets/custom_appbar.dart';
+import 'package:task_management/UI/widgets/tm_app_bar.dart';
 
 import 'package:task_management/UI/widgets/task_card.dart';
 import 'package:task_management/UI/widgets/task_count_by_status.dart';
@@ -35,7 +35,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const TMAppBar(),
       body: Consumer<TaskProvider>(builder: (context, taskProvider, child) {
         return Column(
           children: [

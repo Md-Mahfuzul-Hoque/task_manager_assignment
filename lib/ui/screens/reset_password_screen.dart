@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:task_management/UI/screens/sign_up_page.dart';
-import 'package:task_management/UI/widgets/screen_background.dart';
+import '../widgets/screen_background.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});

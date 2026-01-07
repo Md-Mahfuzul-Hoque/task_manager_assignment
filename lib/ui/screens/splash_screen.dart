@@ -1,10 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:task_management/UI/controller/auth_controller.dart';
-import 'package:task_management/UI/utils/assets_path.dart';
-import 'package:task_management/UI/widgets/screen_background.dart';
-import 'package:task_management/providers/auth_provider.dart';
+
+import '../../providers/auth_provider.dart';
+import '../utils/assets_path.dart';
+import '../widgets/screen_background.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -1,13 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:task_management/UI/screens/forget_password_email_verify.dart';
-import 'package:task_management/UI/screens/main_nav_bar_holder_screen.dart';
 import 'package:task_management/UI/screens/sign_up_page.dart';
-import 'package:task_management/UI/widgets/screen_background.dart';
-import 'package:task_management/data/services/api_caller.dart';
-import 'package:task_management/providers/auth_provider.dart';
-import 'package:task_management/providers/network_provider.dart';
+import '../../data/services/api_caller.dart';
+import '../../providers/auth_provider.dart';
+import '../../providers/network_provider.dart';
+import '../widgets/screen_background.dart';
+import 'forget_password_email_verify.dart';
+import 'main_nav_bar_holder_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

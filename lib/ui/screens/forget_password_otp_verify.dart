@@ -1,7 +1,11 @@
+
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_management/UI/screens/reset_password_screen.dart';
-import 'package:task_management/UI/widgets/screen_background.dart';
+
+import '../widgets/screen_background.dart';
 
 class ForgetPasswordOtpVerify extends StatefulWidget {
   const ForgetPasswordOtpVerify({super.key});

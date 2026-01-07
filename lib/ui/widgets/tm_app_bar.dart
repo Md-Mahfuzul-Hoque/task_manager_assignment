@@ -1,0 +1,67 @@
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/auth_provider.dart';
+import '../screens/update_profile_screen.dart';
+class TMAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const TMAppBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final  authProvider = Provider.of<AuthProvider>(context);
+    final userModel = authProvider.userModel;
+
+    final profilePhoto = userModel?.photo ?? '';
+    return AppBar(
+      backgroundColor: Colors.green,
+      title: InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context)=>UpdateProfileScreen()));
+        },
+        child: Row(
+          children: [
+            CircleAvatar(
+              child: profilePhoto.isNotEmpty ? Image.memory(jsonDecode(profilePhoto)) : Icon(Icons.person),
+            ),
+            SizedBox(width: 8,),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('${userModel!.firstName} ${userModel.lastName}',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Colors.white
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+
+                Text(userModel.email,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.white
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+      actions: [
+        IconButton(onPressed: ()async{
+          await authProvider.logout();
+          Navigator.pushNamedAndRemoveUntil(context, '/login', (predicate)=>false);
+        },
+            icon: Icon(Icons.logout))
+      ],
+    );
+  }
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+}

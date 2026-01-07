@@ -1,15 +1,17 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:task_management/UI/controller/auth_controller.dart';
-import 'package:task_management/UI/widgets/custom_appbar.dart';
-import 'package:task_management/UI/widgets/image_picker.dart';
-import 'package:task_management/UI/widgets/screen_background.dart';
-import 'package:task_management/UI/widgets/snackbar.dart';
-import 'package:task_management/data/models/user_model.dart';
-import 'package:task_management/data/services/api_caller.dart';
-import 'package:task_management/data/utils/urls.dart';
+
+import '../../data/models/user_model.dart';
+import '../../data/services/api_caller.dart';
+import '../../data/utils/urls.dart';
+import '../controller/auth_controller.dart';
+import '../widgets/tm_app_bar.dart';
+import '../widgets/image_picker.dart';
+import '../widgets/screen_background.dart';
+import '../widgets/snackbar.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   const UpdateProfileScreen({super.key});
@@ -39,17 +41,17 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   @override
   initState() {
     super.initState();
-    UserModel userData = AuthController.userModel!;
-    _emailController.text = userData.email;
-    _firstNameController.text = userData.firstName;
-    _lastNameController.text = userData.lastName;
-    _mobileController.text = userData.mobile;
+    // UserModel userData = AuthController?.userModel?? '';
+    _emailController.text = AuthController.userModel?.email ?? '';
+    _firstNameController.text = AuthController.userModel?.firstName ?? '';
+    _lastNameController.text = AuthController.userModel?.lastName ?? '';
+    _mobileController.text = AuthController.userModel?.mobile ?? '';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const TMAppBar(),
       body: ScreenBackground(
         child: Padding(
           padding: const EdgeInsets.all(30),

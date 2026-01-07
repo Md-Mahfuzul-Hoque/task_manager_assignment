@@ -1,10 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:task_management/UI/widgets/custom_appbar.dart';
-import 'package:task_management/UI/widgets/screen_background.dart';
-import 'package:task_management/UI/widgets/snackbar.dart';
-import 'package:task_management/data/services/api_caller.dart';
-import 'package:task_management/data/utils/urls.dart';
-
+import '../../data/services/api_caller.dart';
+import '../../data/utils/urls.dart';
+import 'package:task_management/UI/widgets/tm_app_bar.dart';
+import '../widgets/snackbar.dart';
+import '../widgets/screen_background.dart';
 class AddNewTaskScreen extends StatefulWidget {
   const AddNewTaskScreen({super.key});
 
@@ -19,7 +19,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: TMAppBar(),
       body: ScreenBackground(
           child: Padding(
             padding: const EdgeInsets.all(25.0),

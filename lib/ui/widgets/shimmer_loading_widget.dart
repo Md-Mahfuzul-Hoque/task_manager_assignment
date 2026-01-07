@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:task_management/UI/widgets/content_placeholder.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:task_management/ui/widgets/content_placeholder.dart';
 import 'package:task_management/ui/widgets/title_placeholder.dart';
-import 'banner_placeholder.dar.dart';
+
+
+import 'banner_placeholder.dart';
+
 
 class ShimmerLoadingWidget extends StatelessWidget {
   const ShimmerLoadingWidget({

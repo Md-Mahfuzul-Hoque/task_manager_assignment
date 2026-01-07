@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:task_management/UI/widgets/custom_appbar.dart';
+import 'package:task_management/UI/widgets/tm_app_bar.dart';
 
 import 'package:task_management/UI/widgets/task_card.dart';
 import 'package:task_management/core/enums/api_state.dart';
@@ -30,7 +30,7 @@ class _CancelTaskScreenState extends State<CancelTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const TMAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Consumer<TaskProvider>(builder: (context, taskProvider, child) {
